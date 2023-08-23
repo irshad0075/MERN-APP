@@ -1,0 +1,60 @@
+/* NavigationBar.css */
+
+/* Style for the whole navigation bar */
+.navbar {
+  background-color: #050052 !important; 
+  padding: 8px 0; 
+  position: fixed;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+/* Style for the brand icon and text */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+/* Style for the navigation links */
+.nav-link {
+  color: white;
+  font-size: 0.9rem;
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+/* Style for the navigation icons */
+.nav-icon {
+  margin-right: 6px; 
+  font-size: 1rem;
+}
+
+/* Style for the buttons in the navigation bar */
+.btn {
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-success {
+  background-color: #28a745; /* Green color for the "Sign Out" button */
+  border-color: #28a745;
+  color: white;
+}
+
+.btn-outline-success {
+  background-color: transparent;
+  border-color: #28a745;
+  color: #28a745;
+}
+
+/* Hover effect for buttons */
+.btn:hover {
+  background-color: #218838;
+  border-color: #218838;
+  color: white;
+}
