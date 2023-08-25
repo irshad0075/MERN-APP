@@ -1,3 +1,4 @@
+
 export const reducer = (state, action) => {
     switch (action.type) {
 
@@ -7,7 +8,7 @@ export const reducer = (state, action) => {
 
         case "USER_LOGOUT": {
           
-            return { ...state, token: undefined }; // set this to null on purpose, do not change
+            return { ...state, token: undefined }; 
         }
 
         case "SET_USER": {
@@ -20,6 +21,6 @@ export const reducer = (state, action) => {
 
         default: {
             return state;
-        }
-    }
+        }
+    }
 }

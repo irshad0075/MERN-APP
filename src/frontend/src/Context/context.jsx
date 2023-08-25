@@ -19,5 +19,5 @@ export default function ContextProvider({ children }) {
         <GlobalContext.Provider value={{ state, dispatch }}>
             {children}
         </GlobalContext.Provider>
-    );
+    );
 }

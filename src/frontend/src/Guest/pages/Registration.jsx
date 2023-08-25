@@ -1,49 +1,47 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { GlobalContext } from "../../Context/context";
-import { Link } from "react-router-dom";
-import CommonSection from "../components/UI/CommonSection";
-import Helmet from "../components/Helmet/Helmet";
-import "../styles/registration.css"; // Import your custom CSS styles
+import { GlobalContext } from '../../Context/context';
+import { Link } from 'react-router-dom';
+import Helmet from '../components/Helmet/Helmet';
+import CommonSection from '../components/UI/CommonSection';
+import '../styles/registration.css';
+
 
 export default function Signup() {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const { state, dispatch } = useContext(GlobalContext);
 
-  const SignupUser = async (e) => {
+  const SignupUser = (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
-
     const payload = { email, password, username };
-  
-    try {
-      const response = await axios.post('http://localhost:2800/api/signup', payload);
-      Cookies.set('token', response.data.token);
-      dispatch({
-        type: "USER_SIGNUP",
-        token: response.data.token
-      });
-    } catch (err) {
-      setError("Signup failed. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+
+    axios
+      .post('http://localhost:3000/api/signup', payload)
+      .then((json) => {
+        Cookies.set('token', json.data.token);
+        dispatch({
+          type: 'USER_SIGNUP',
+          token: json.data.token,
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
-    <div className="signup-container">
-      <Helmet title="Signup">
-        <CommonSection title="Create an Account" />
-        <div className="signup-box">
-          <form onSubmit={SignupUser}>
-            <div className="input-box">
+    <>
+      <Helmet title="Signup" />
+      <CommonSection title="Signup" />
+      <div className="signup-container">
+        <div className="image">
+          <img src="https://i.pinimg.com/originals/f9/fd/b0/f9fdb0a5f829ce78544deb865f769a10.gif" alt="" />
+        </div>
+        <form onSubmit={SignupUser} className="signup-form">
+          <div className="form-content">
+            <h3>Create an Account</h3>
+            <div className="input-container">
               <input
                 type="text"
                 name="Username"
@@ -52,9 +50,8 @@ export default function Signup() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
-              {/* <label>Username</label> */}
             </div>
-            <div className="input-box">
+            <div className="input-container">
               <input
                 name="email"
                 placeholder="Email"
@@ -63,9 +60,8 @@ export default function Signup() {
                 onChange={(e) => setEmail(e.target.value)}
                 required=""
               />
-              {/* <label>Email</label> */}
             </div>
-            <div className="input-box">
+            <div className="input-container">
               <input
                 name="password"
                 placeholder="Password"
@@ -74,20 +70,15 @@ export default function Signup() {
                 onChange={(e) => setPassword(e.target.value)}
                 required=""
               />
-              {/* <label>Password</label> */}
             </div>
-            <center>
-              <button className="signup-btn" disabled={loading}>
-                {loading ? "Signing Up..." : "SIGNUP"}
-              </button>
-              {error && <p className="error-message">{error}</p>}
-            </center>
-          </form>
-          <p className="login-link">
-            Already have an account? <Link to="/login">Login</Link>
-          </p>
-        </div>
-      </Helmet>
-    </div>
+            <button className="btn btn-dark signup-button">SIGNUP</button>
+            <p className="login-link">
+              Already have an account?{' '}
+              <Link to={`/login`}>Login here</Link>
+            </p>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }

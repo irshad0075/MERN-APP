@@ -1,38 +1,16 @@
-// Cart.js
 import React, { useContext } from "react";
 import { CartContext } from "../CartContext/context";
 import { GlobalContext } from "../../Context/context";
 import { decodeToken } from "react-jwt";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
-import "../styles/Cart.css";
 import { Link } from "react-router-dom";
+import "../styles/Cart.css";
+
 export default function Cart() {
   const { cart_state, cart_dispatch } = useContext(CartContext);
   const { state, dispatch } = useContext(GlobalContext);
   const user = decodeToken(state.token);
-  const calculateTotal = () => {
-    return cart_state.cart.reduce(
-      (accumulator, product) => accumulator + product.price * product.quantity,
-      0
-    );
-  };
-
-  const checkout = () => {
-    const total = calculateTotal();
-    const payload = {
-      items: cart_state.cart,
-      totalBill: total,
-      customerAddress: "hello 123 Street ABC",
-      customerContact: "0900 78601",
-      customerName: user.username,
-      customerEmail: user.email,
-    };
-
-    console.log("Checkout Payload:", payload);
-  };
-
-  const total = calculateTotal();
 
   const deleteItem = (itemId) => {
     cart_dispatch({ type: "DELETE_ITEM", payload: itemId });
@@ -41,6 +19,14 @@ export default function Cart() {
   const clearCart = () => {
     cart_dispatch({ type: "CLEAR_CART" });
   };
+
+  // Calculate the total price of items in the cart
+  const total = cart_state.cart
+    ? cart_state.cart.reduce(
+        (accumulator, product) => accumulator + product.price * product.quantity,
+        0
+      )
+    : 0;
 
   return (
     <Helmet title="Cart">
