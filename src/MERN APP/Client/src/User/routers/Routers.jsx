@@ -6,11 +6,10 @@ import CategoryPage from "../pages/CategoryPage";
 import ProductPage from "../pages/ProductPage";
 import Blog from "../pages/Blog";
 import BlogDetails from "../pages/BlogDetails";
-import NotFound from "../pages/NotFound";
 import Cart from "../pages/Cart";
-import Contact from "../pages/Contact";
 import Brands from "../pages/Brands";
 import OrderPlacement from "../pages/OrderPlacement";
+// import NotFound from "../pages/NotFound";
 
 const Routers = () => {
   return (
@@ -25,8 +24,8 @@ const Routers = () => {
       <Route path="/products/checkout" element={<OrderPlacement />} />
       <Route path="/products/:ProductName" element={<ProductPage />} />
       <Route path="/blogs" element={<Blog />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<Home />} />
+      {/* <Route path="*" element={<NotFound />} /> */}
     </Routes>
   );
 };

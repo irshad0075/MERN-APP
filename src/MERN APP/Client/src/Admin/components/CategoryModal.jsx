@@ -30,7 +30,7 @@ function CategoryModal({ recallData }) {
             .then((json) => {
               setIsLoading(false); // Stop loading
               setShow(false);
-              recallData(json.data.Category);
+              recallData(json.data.categories);
             })
             .catch((err) => {
               setIsLoading(false); // Stop loading

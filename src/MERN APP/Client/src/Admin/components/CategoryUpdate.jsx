@@ -29,7 +29,7 @@ function CategoryUpdate({ recallData, ID }) {
                         CategoryImage: url
                     }
                     console.log(payload)
-                    axios.put('http://localhost:2800/api/update-category', payload)
+                    axios.put('http://localhost:3000/api/update-category', payload)
                         .then((json) => {
                             setShow(false);
                             recallData(json.data.category);

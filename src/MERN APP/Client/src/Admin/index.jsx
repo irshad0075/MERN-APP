@@ -6,8 +6,9 @@ import Brands from './pages/Brands'
 import Cars from './pages/Cars'
 import { Route, Routes } from "react-router-dom";
 import NavigationBar from './components/NavigationBar';
-
+import AdminFooter from "./Components/AdminFooter.jsx";
 export default function Admin() {
+    
     return (
         <>
             <NavigationBar />
@@ -19,7 +20,7 @@ export default function Admin() {
                 <Route path="/cars" element={<Cars />} />
                 <Route path="*" element={<Home />} />
             </Routes>
-
+            <AdminFooter />
         </>
     )
 }

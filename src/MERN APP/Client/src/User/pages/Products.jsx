@@ -40,7 +40,7 @@ function Products() {
                   </p>
                   {/* Link to ProductPage with product ID */}
                   <Link to={`/products/${product.ProductName}`} className="add-to-cart-btn">
-                    <BiCart /> Add to Cart
+                    <BiCart /> Detail
                   </Link>
                 </div>
               </div>

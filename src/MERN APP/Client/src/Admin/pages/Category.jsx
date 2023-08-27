@@ -7,11 +7,11 @@ import { MdDelete } from 'react-icons/md'
 
 export default function Category() {
 
-  const [categories, setcategories] = useState([])
+  const [category, setcategory] = useState([])
 
   useEffect(() => {
     axios.get('http://localhost:3000/api/get-all-categories')
-      .then((json) => setcategories(json.data.categories))
+      .then((json) => setcategory(json.data.category))
       .catch((err) => console.log(err))
   }, [])
 
@@ -27,7 +27,7 @@ const deleteCategory = (_id) => {
   }
 
   axios(config)
-    .then((json) => setcategories(json.data.categories))
+    .then((json) => setcategory(json.data.category))
     .catch((err) => console.log(err))
 
 
@@ -40,7 +40,7 @@ const deleteCategory = (_id) => {
       <div className="container">
         <div className="d-flex justify-content-between align-items-center bg-success p-2 my-3 rounded">
           <span className='fs-4 fw-bold text-white'>Categories</span>
-          <CategoryModal recallData={setcategories}/>
+          <CategoryModal recallData={setcategory}/>
         </div>
         <div className="container">
           <table className="table">
@@ -55,7 +55,7 @@ const deleteCategory = (_id) => {
             </thead>
             <tbody>
               {
-                categories.map((val, key) =>
+                category.map((val, key) =>
                   <tr key={key}>
                     <th scope="row">{val._id}</th>
                     <td>{val.CategoryName}</td>
@@ -65,7 +65,7 @@ const deleteCategory = (_id) => {
                     <td><button className='btn btn-dark '
                       onClick={() => deleteCategory(val._id)}
                     ><MdDelete/></button>
-                    <CategoryUpdate ID={val._id} recallData={setcategories}/>
+                    <CategoryUpdate ID={val._id} recallData={setcategory}/>
                     </td>
                   </tr>
                 ) 

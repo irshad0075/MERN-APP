@@ -55,7 +55,7 @@ function Header() {
             <FaTags /> Categories
           </Nav.Link>
           <Nav.Link href="/brands" style={{ ...linkStyle }}>
-            <FaCogs /> Models
+            <FaCogs /> Brands
           </Nav.Link>
           <Nav.Link href="/carts" style={{ ...linkStyle, ...cartStyle }}>
             <FaShoppingCart />

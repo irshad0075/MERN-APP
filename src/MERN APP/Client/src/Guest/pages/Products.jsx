@@ -55,7 +55,7 @@ function Products() {
                       to={`/products/${product.ProductName}`}
                       className="add-to-cart-btn"
                     >
-                      <BiCart /> Add to Cart
+                      Details
                     </Link>
                   </div>
                 </div>

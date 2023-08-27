@@ -5,26 +5,49 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../styles/Productslider.css";
-import CommonSection from "../components/UI/CommonSection";
 import Helmet from "../components/Helmet/Helmet";
-export default function BrandsGuest() {
+import CommonSection from "../components/UI/CommonSection";
+
+// CustomPrevArrow component
+const CustomPrevArrow = (props) => {
+  const { className, onClick } = props;
+  return (
+
+    <div className={className} onClick={onClick}>
+      <span className="arrow left-arrow" />
+
+    </div>
+  );
+};
+
+// CustomNextArrow component
+const CustomNextArrow = (props) => {
+  const { className, onClick } = props;
+  return (
+    <div className={className} onClick={onClick}>
+      <span className="arrow right-arrow" />
+    </div>
+  );
+};
+
+export default function BrandsAdmin() {
   const [brands, setBrands] = useState([]);
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/get-all-brand")
-      .then((response) => {
-        setBrands(response.data.category || []);
+      .then(response => {
+        setBrands(response.data.brands || []);
       })
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
   }, []);
 
+  // Slider settings
   const sliderSettings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, 
+    slidesToShow: 3, // Number of cards shown in a slide
     slidesToScroll: 3,
     responsive: [
       {
@@ -42,22 +65,25 @@ export default function BrandsGuest() {
         },
       },
     ],
+    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />,
   };
 
   return (
-    <Helmet title="Brands">
-      <CommonSection title="Brands" />
-      <div className="container my-5">
-        <Slider {...sliderSettings}>
-          {brands.map((val, key) => (
-            <div key={key} className="slick-slide">
-              <Link className="text-decoration-none" to={`/products`}>
-                <Card className="darazi-card h-100">
-                  <Card.Img
-                    src={val.BrandImage}
-                    className="card-img-top"
-                    style={{ height: "200px" }}
-                  />
+    <Helmet title="Latest Brands">
+    <CommonSection title="Latest Brands" />
+    <div className="container my-5">
+      {/* <div className="text-center">
+        <h2 className="productsHead">Brands</h2>
+        
+      </div> */}
+      <Slider {...sliderSettings}>
+        {brands.map((val, key) => (
+          <div className="col-lg-3 col-md-4 col-sm-6 my-3" key={key}>
+            <div className="darazi-card">
+              <Link className="text-decoration-none" to={`/login`}>
+                <Card>
+                  <Card.Img src={val.BrandImage} className="card-img-top" />
                   <div className="daraz-card-content">
                     <h5 className="daraz-card-title">
                       {val.BrandName.toUpperCase()}
@@ -66,9 +92,10 @@ export default function BrandsGuest() {
                 </Card>
               </Link>
             </div>
-          ))}
-        </Slider>
-      </div>
+          </div>
+        ))}
+      </Slider>
+    </div>
     </Helmet>
   );
 }
