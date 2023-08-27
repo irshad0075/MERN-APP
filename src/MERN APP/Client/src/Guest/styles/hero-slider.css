@@ -1,0 +1,72 @@
+/* Slider Images */
+.slider__item {
+  max-width: 100%;
+  height: 650px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slider__item-01 {
+  background-image: url("https://www.edmunds.com/assets/m/cs/blt1bcf0ea8157869a0/64e686e03026ee2d4f6b8297/2024_ford_f-150-lightning_black_front_1_1280.jpg");
+}
+
+.slider__item-02 {
+  background-image: url("https://www.edmunds.com/assets/m/cs/bltf5ff3f98d6fb1d85/64e686e3aa596e82a181a025/2024_ford_f-150-lightning_black_profile_717.jpg");
+}
+
+.slider__item-03 {
+  background-image: url("https://images.cars.com/cldstatic/wp-content/uploads/ford-f-150-lightning-platinum-black-exterior-2024-oem-01.jpg");
+}
+
+.slider__item-04 {
+  background-image: url("https://www.edmunds.com/assets/m/cs/blte2210eeb407a7d4c/64e686ddf1ac3d14d6f8f9ae/2024_ford_f-150-lightning_black_interior_717.jpg");
+}
+
+/* Arrow Styles */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.prev-arrow {
+  left: 20px;
+}
+
+.next-arrow {
+  right: 20px;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 992px) {
+  .slider__item {
+    height: 530px;
+    max-width: 100vw;
+  }
+
+  .slider__content {
+    margin-top: -50px;
+  }
+
+  .slider__content h1 {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .slider__item {
+    height: 450px;
+  }
+
+  .slider__content h1 {
+    font-size: 1.5rem;
+  }
+}
+  

@@ -1,0 +1,117 @@
+/* Cart.css */
+
+.cart-container {
+    /* background-color: #f7f7f7; */
+    /* background-image: url("https://cdn.dribbble.com/users/1162077/screenshots/4840870/e-commerce-pattern.gif"); */
+background-image: url("https://www.edmunds.com/assets/m/cs/blte2210eeb407a7d4c/64e686ddf1ac3d14d6f8f9ae/2024_ford_f-150-lightning_black_interior_717.jpg");
+    padding: 20px;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #eeeeeef1;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item-image {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.cart-item-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.cart-item-details {
+    flex: 3;
+    padding: 0 10px;
+}
+
+.cart-item-details h5 {
+    margin: 0;
+    font-size: 18px;
+    color: #333333;
+}
+
+.cart-item-details p {
+    margin: 0;
+    font-size: 14px;
+    color: #777777;
+}
+
+.cart-item-details .quantity {
+    color: #555555;
+}
+
+.cart-item-price {
+    flex: 1;
+    text-align: center;
+}
+
+.cart-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #c0c0c0e3;
+    border: 1px solid #000268;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.total {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.cart-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-clear,
+.btn-checkout {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-clear,
+.btn-checkout {
+    background-color: #990a00 !important;
+    color: white !important;
+    align-items: center;
+    width: 100%;
+    border: none;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-clear:hover,
+.btn-checkout:hover {
+    background-color: #7b0900 !important;
+}
+
+.btn-checkout {
+    background-color: #0c0075 !important;
+    height: 50px !important;
+}
+
