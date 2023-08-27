@@ -10,19 +10,11 @@ blockquote {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  border: 2px solid #000d6b;
+  border: 2px solid #242424;
   object-fit: cover;
 }
 
-.replay i {
-  color: #f9a826;
-}
 
-.replay {
-  color: #000d6b;
-  font-weight: 600;
-  cursor: pointer;
-}
 
 .leave__comment-form input,
 .leave__comment-form textarea {
@@ -34,13 +26,13 @@ blockquote {
 }
 
 .comment__btn {
-  background: #000d6b !important;
+  background: #1f1f1f !important;
   color: #fff !important;
 }
 
 .recent__blog-item h6 a {
   text-decoration: none;
-  color: #000d6b;
+  color: #333333;
   font-weight: 600;
 }
 

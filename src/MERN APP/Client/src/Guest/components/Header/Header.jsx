@@ -1,14 +1,5 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import {
-  AiFillHome,
-  AiOutlineUser,
-  AiOutlineCar,
-  AiOutlineMail,
-} from "react-icons/ai";
-import { IoIosPaper } from "react-icons/io";
-import { FaSignOutAlt } from "react-icons/fa";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -21,50 +12,50 @@ function Header() {
 
   const linkStyle = {
     color: "#fff",
-    fontSize: "1.2rem",
-    fontWeight: "bold",
+    fontSize: "1.1rem",
     display: "flex",
     alignItems: "center",
+    textDecoration: "none",
+    margin: "0 50px", // Adding space between links
+  };
+
+  const navStyle = {
+    maxHeight: "100px",
+    color: "#fff",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center", // Center align the links
   };
 
   return (
-    <Navbar
-      expand="lg"
-      className="Navigation"
-      // style={{ backgroundColor: " #2c2c2cdd" }}
-    >
+    <Navbar expand="lg" className="Navigation">
       <Container fluid>
         <Navbar.Brand href="/" style={{ color: "#fff" }}>
           <h2>
             <strong>Arshi Rovers</strong>
           </h2>{" "}
-          {/* Making "Arshi Rovers" bold */}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" style={{ color: "#fff" }} />
         <Navbar.Collapse id="navbarScroll" style={{ color: "#fff" }}>
-          <Nav
-            className="me-auto my-4 my-lg-0"
-            style={{ maxHeight: "100px", color: "#fff" }}
-            navbarScroll
-          >
-            <Nav.Link href="/" style={{ ...linkStyle }}>
-              <AiFillHome /> Home
-            </Nav.Link>
-            <Nav.Link href="/about" style={{ ...linkStyle }}>
-              <IoIosPaper /> About
-            </Nav.Link>
-            <Nav.Link href="/Blogs" style={{ ...linkStyle }}>
-              <IoIosPaper /> Blogs
-            </Nav.Link>
-            <Nav.Link href="/products" style={{ ...linkStyle }}>
-              <AiOutlineCar /> Cars
-            </Nav.Link>
-            <Nav.Link href="/login" style={{ ...linkStyle }}>
-              <AiOutlineUser /> Login
-            </Nav.Link>
-            <Nav.Link href="/registration" style={{ ...linkStyle }}>
-              <AiOutlineUser /> Signup
-            </Nav.Link>
+          <Nav className="me-auto my-4 my-lg-0" style={navStyle} navbarScroll>
+            <Link to="/" style={linkStyle}>
+              Home
+            </Link>
+            <Link to="/about" style={linkStyle}>
+              About
+            </Link>
+            <Link to="/Blogs" style={linkStyle}>
+              Blogs
+            </Link>
+            <Link to="/products" style={linkStyle}>
+              Cars
+            </Link>
+            <Link to="/login" style={linkStyle}>
+              Login
+            </Link>
+            <Link to="/registration" style={linkStyle}>
+              Signup
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form, FormGroup, Input } from "reactstrap";
-import {
-  RiUserLine,
-  RiCalendarLine,
-  RiTimeLine,
-  RiReplyLine,
-} from "react-icons/ri";
-import Swal from "sweetalert2"; // Import SweetAlert2 library
+import { RiUserLine, RiCalendarLine, RiTimeLine } from "react-icons/ri";
+import Swal from "sweetalert2";
 import CommonSection from "../components/UI/CommonSection";
-
 import { useParams } from "react-router-dom";
 import blogData from "../assets/data/blogData";
 import Helmet from "../components/Helmet/Helmet";
 import { Link } from "react-router-dom";
-
 import commentImg from "../assets/all-images/ava-1.jpg";
-
 import "../styles/blog-details.css";
 
 const BlogDetails = () => {
@@ -56,8 +48,8 @@ const BlogDetails = () => {
 
   return (
     <Helmet title="Blogs">
-    <CommonSection title="Latest Blogs" />
-    {/* <Helmet title={blog.title}> */}
+      <CommonSection title="Latest Blogs" />
+
       <section>
         <Container>
           <Row>
@@ -84,35 +76,27 @@ const BlogDetails = () => {
                 <h6 className="ps-5 fw-normal">
                   <blockquote className="fs-4">{blog.quote}</blockquote>
                 </h6>
-                <p className="section__description">{blog.description}</p>
+                {/* <p className="section__description">{blog.description}</p> */}
               </div>
 
               <div className="comment__list mt-5">
-                <h4 className="mb-5">3 Comments</h4>
+                <h4 className="mb-5"> Comments</h4>
 
                 <div className="single__comment d-flex gap-3">
                   <img src={commentImg} alt="" />
                   <div className="comment__content">
                     <h6 className=" fw-bold">David Visa</h6>
-                    <p className="section__description mb-0">14 July, 2022</p>
+                    <p className="section__description mb-0">30 August, 2023</p>
                     <p className="section__description">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Eos nobis totam eius laborum molestias itaque minima
                       distinctio, quae velit tempore!
                     </p>
-
-                    <span className="replay d-flex align-items-center gap-1">
-                      <RiReplyLine /> Replay
-                    </span>
                   </div>
                 </div>
 
-                =============== comment form ============
                 <div className="leave__comment-form mt-5">
                   <h4>Leave a Comment</h4>
-                  <p className="section__description">
-                    You must sign-in to make or comment a post
-                  </p>
 
                   <Form>
                     <FormGroup className="d-flex gap-3">
@@ -156,7 +140,7 @@ const BlogDetails = () => {
                     </FormGroup>
 
                     <button
-                      className="btn comment__btn mt-3"
+                      className="btn comment__btn mt-3 "
                       onClick={handleSubmit}
                     >
                       Post a Comment
