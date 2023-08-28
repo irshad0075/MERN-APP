@@ -1,0 +1,10 @@
+.sign-out-button {
+  padding: 6px 10px;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+}
+
+.Navigation {
+  background-color: #2c2c2cdd !important;
+}

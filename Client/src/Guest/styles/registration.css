@@ -1,0 +1,41 @@
+/* Signup.css */
+
+.signup-container {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.signup-form {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.form-content {
+  width: 100%;
+}
+
+.signup-form h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Rest of your styles remain unchanged */
