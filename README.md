@@ -365,4 +365,8 @@
   
  ### Conclusion 
   
+<<<<<<< HEAD
  Our POS MERN Stack Project empowers businesses with a versatile point-of-sale solution. Built with MongoDB, Express.js, React, and Node.js, it offers streamlined operations and enhanced customer experiences in today's dynamic marketplace.
+=======
+ Our POS MERN Stack Project empowers businesses with a versatile point-of-sale solution. Built with MongoDB, Express.js, React, and Node.js, it offers streamlined operations and enhanced customer experiences in today's dynamic marketplace.
+>>>>>>> origin/master
