@@ -3,7 +3,6 @@ import axios from "axios";
 import { useState } from "react";
 import ProductModal from "../components/ProductModal";
 import { MdDelete } from "react-icons/md";
-import ProductUpdate from "../components/ProductUpdate.jsx";
 
 export default function Product() {
   const [product, setProduct] = useState([]);
@@ -126,10 +125,7 @@ export default function Product() {
                         >
                           <MdDelete />
                         </button>
-                        {/* <span>
-                          {" "}
-                          <ProductUpdate ID={val._id} recallData={setProduct} />
-                        </span> */}
+                      
                       </div>
                     </td>
                   </tr>
