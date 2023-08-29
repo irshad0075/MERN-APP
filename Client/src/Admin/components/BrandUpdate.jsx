@@ -34,7 +34,7 @@ export default function BrandUpdate({ recallData, ID }) {
                         BrandName,
                         BrandImage: url
                     }
-                    axios.put('http://localhost:2800/api/update-brand', payload)
+                    axios.put('http://localhost:3000/api/update-brand', payload)
                         .then((json) => {
                             setIsLoading(false);
                             setShow(false);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { storage } from "../utils/FirebaseConfig";
@@ -9,11 +9,8 @@ import axios from "axios";
 function ProductModal({ recallData }) {
   const [show, setShow] = useState(false);
 
-  //To get values from API
   const [brandVal, setBrandVal] = useState([]);
   const [CategoryVal, setCategoryVal] = useState([]);
-
-  //To get values from form
   const [ProductName, setProductName] = useState("");
   const [thumbnail, setThumbnail] = useState(null);
   const [price, setPrice] = useState(0);
@@ -27,77 +24,80 @@ function ProductModal({ recallData }) {
   const [colors, setColors] = useState([]);
   const [description, setDescription] = useState("");
 
-  //To show values on brand and category drop down list
   const handleClose = () => setShow(false);
   const handleShow = () => {
-    axios.get("http://localhost:3000/api/get-all-brand").then((json) => {
-      setBrandVal(json.data.brands);
-      axios.get("http://localhost:3000/api/get-all-categories").then((json) => {
-        setCategoryVal(json.data.category);
-        setShow(true);
-      });
+    axios.get("http://localhost:3000/api/get-all-brand").then((response) => {
+      setBrandVal(response.data.brands);
+      axios
+        .get("http://localhost:3000/api/get-all-categories")
+        .then((response) => {
+          setCategoryVal(response.data.category);
+          setShow(true);
+        });
     });
   };
 
-  const urls = [];
-  const MultipleImageUpload = () =>
-    imageArray?.map((val) => {
-      const MultipleImageRef = ref(
+  const MultipleImageUpload = () => {
+    if (!Array.isArray(imageArray) || imageArray.length === 0) {
+      return Promise.resolve([]);
+    }
+
+    const uploadPromises = imageArray.map((val) => {
+      const imageRef = ref(
         storage,
         `images/product/${ProductName}/${val.name}`
       );
-      return uploadBytes(MultipleImageRef, val).then((snapshot) => {
-        return getDownloadURL(snapshot.ref)
-          .then((url) => {
-            urls.push(url);
-          })
-          .catch((error) => alert(error.message));
-      });
+      return uploadBytes(imageRef, val)
+        .then((snapshot) => getDownloadURL(snapshot.ref))
+        .catch((error) => {
+          console.error("Error uploading image:", error.message);
+          return null;
+        });
     });
+
+    return Promise.all(uploadPromises);
+  };
 
   const AddProduct = (e) => {
     e.preventDefault();
 
-    const uploadImages = MultipleImageUpload();
-
-    Promise.all(uploadImages)
-      .then(() => {
-        const storageRef = ref(
+    MultipleImageUpload()
+      .then((urls) => {
+        const thumbnailRef = ref(
           storage,
           `images/product/${ProductName}/${thumbnail.name}`
         );
-        uploadBytes(storageRef, thumbnail).then((snapshot) => {
-          getDownloadURL(snapshot.ref)
-            .then((url) => {
-              const payload = {
-                ProductName,
-                modelYear,
-                discountPercentage,
-                rating,
-                stock,
-                colors,
-                brand,
-                category,
-                price,
-                description,
-                thumbnail: url,
-                imageArray: urls,
-              };
-              console.log("Ready to hit the API", payload);
+        return uploadBytes(thumbnailRef, thumbnail)
+          .then((snapshot) => getDownloadURL(snapshot.ref))
+          .then((thumbnailUrl) => {
+            const payload = {
+              ProductName,
+              modelYear,
+              discountPercentage,
+              rating,
+              stock,
+              colors,
+              brand,
+              category,
+              price,
+              description,
+              thumbnail: thumbnailUrl,
+              imageArray: urls,
+            };
 
-              axios
-                .post("http://localhost:3000/api/create-product", payload)
-                .then((json) => {
-                  console.log(json); // Add this line to see the response data
-                  setShow(false);
-                  recallData(json.data.products);
-                })
-                .catch((error) => alert(error.message));
-            })
-            .catch((error) => {
-              console.log(error.message);
-            });
-        });
+            axios
+              .post("http://localhost:3000/api/create-product", payload)
+              .then((response) => {
+                console.log(response.data);
+                setShow(false);
+                recallData(response.data.products);
+                setImageArray([]);
+              })
+              .catch((error) => alert(error.message));
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
       })
       .catch((err) => console.log(err.message));
   };

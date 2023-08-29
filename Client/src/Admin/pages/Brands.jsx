@@ -30,7 +30,7 @@ export default function Brand() {
 
   return (
     <div className="container">
-      <div className="d-flex justify-content-between align-items-center bg-success p-2 my-3 rounded">
+      <div className="d-flex justify-content-between align-items-center p-2 my-3 rounded" style={{backgroundColor:" #2c2c2cdd"}}>
         <span className="fs-4 fw-bold text-white">Brands</span>
         <BrandModal recallData={setBrand} />
       </div>

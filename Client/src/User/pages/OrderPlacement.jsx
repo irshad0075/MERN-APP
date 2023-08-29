@@ -17,7 +17,7 @@ export default function OrderPlacement() {
   const [contact, setContact] = useState("");
   const [address, setAddress] = useState("");
   const [trackingId, setTrackingId] = useState("");
-  const deliveryCharges = 500; 
+  const deliveryCharges = 500;
 
   const checkOut = async (e) => {
     e.preventDefault();
@@ -34,7 +34,10 @@ export default function OrderPlacement() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:3000/api/create-order", payload);
+      const response = await axios.post(
+        "http://localhost:3000/api/create-order",
+        payload
+      );
 
       if (response.status === 201) {
         Swal.fire({
@@ -66,15 +69,15 @@ export default function OrderPlacement() {
 
   const getStatus = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await axios.get(
         `http://localhost:3000/api/Order-by-id?${trackingId}`
       );
-  
+
       if (response.data.order) {
         const orderStatus = response.data.order.Status;
-  
+
         if (orderStatus === "Delivered") {
           Swal.fire("Order Status", "Status: Delivered", "info");
         } else if (orderStatus === "pending") {
@@ -93,7 +96,7 @@ export default function OrderPlacement() {
           "warning"
         );
       }
-  
+
       setTrackingId("");
     } catch (err) {
       console.log(err);
@@ -104,7 +107,6 @@ export default function OrderPlacement() {
       );
     }
   };
-  
 
   const calculateTotal = () => {
     const cartTotal = cart_state.cart.reduce(
@@ -121,7 +123,7 @@ export default function OrderPlacement() {
       <CommonSection title="Place Your Order Here" />
       <div className="container">
         <div className="row mt-5">
-          <div className="col-md-7" style={{ color: "#000268" }}>
+          <div className="col-md-7" style={{ color: " #2c2c2cdd" }}>
             <h2>Getting Your Order</h2>
             <hr className="w-75" />
             <h4>Shipping Information</h4>
@@ -162,7 +164,9 @@ export default function OrderPlacement() {
                 />
               </Form.Group>
               <div className="my-2">Delivery charges will be charged.</div>
-              <div>You will receive an email on successful order placement.</div>
+              <div>
+                You will receive an email on successful order placement.
+              </div>
               <div className="d-flex">
                 <Button className="w-50 mt-3" variant="secondary" type="submit">
                   Place Order
@@ -188,7 +192,10 @@ export default function OrderPlacement() {
           <div className="col-md-5">
             <h2>Order Summary</h2>
             <hr className="w-75" />
-            <div className="shadow-lg p-2 rounded" style={{ color: "#000268" }}>
+            <div
+              className="shadow-lg p-2 rounded"
+              style={{ color: " #2c2c2cdd" }}
+            >
               {cart_state.cart.map((val, key) => (
                 <div className="cart-item" key={key}>
                   <div className="cart-item-image">
@@ -209,9 +216,12 @@ export default function OrderPlacement() {
                 </div>
               ))}
               <div>
-                Delivery Charges: <strong style={{ color: "#" }}>{deliveryCharges}$</strong>{" "}
+                Delivery Charges:{" "}
+                <strong style={{ color: "#" }}>{deliveryCharges}$</strong>{" "}
               </div>
-              <strong style={{ color: "red" }}>Total: {calculateTotal()}$</strong>
+              <strong style={{ color: "red" }}>
+                Total: {calculateTotal()}$
+              </strong>
             </div>
           </div>
         </div>

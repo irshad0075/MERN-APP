@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./adminPage.css";
-
+import Helmet from "../../User/components/Helmet/Helmet";
+import CommonSection from "../../User/components/UI/CommonSection";
 export default function MyCars() {
   const [products, setProducts] = useState([]);
 
@@ -14,15 +15,9 @@ export default function MyCars() {
 
   return (
     <>
+    <Helmet title="CARS">
+        <CommonSection title="Get your favourite Car here" />
       <div className="container my-5 BgImg">
-        <div className="text-center">
-          <h2 className="productsHead">Products</h2>
-          <p className="text-secondary">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
-            delectus magnam doloribus voluptatibus possimus corrupti aliquid
-            itaque harum debitis ipsa!
-          </p>
-        </div>
 
         <div className="row my-5">
           {products.map((product, index) => (
@@ -42,6 +37,7 @@ export default function MyCars() {
           ))}
         </div>
       </div>
+      </Helmet>
     </>
   );
 }

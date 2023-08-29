@@ -164,30 +164,23 @@ const updateProduct = async (req, res) => {
 };
 
 const deleteProduct = async (req, res) => {
-    const { _id } = req.body;
 
+    const { _id } = req.body
     try {
-        if (!mongoose.Types.ObjectId.isValid(_id)) {
-            return res.status(400).json({
-                message: "Invalid ObjectId"
-            });
-        }
-
-        await connect(process.env.MONGO_URI);
-        await Product.deleteOne({ _id });
-
-        const products = await Product.find();
-
+        await connect(process.env.MONGO_URI)
+        await Product.deleteOne({ _id })
+        const products = await Product.find()
         res.status(200).json({
-            message: "Product deleted",
+            message: "Deleted Successfully",
             products
-        });
-    } catch (error) {
+        })
+    }
+    catch (error) {
         res.status(400).json({
             message: error.message
-        });
+        })
     }
-};
+}
 
 module.exports = {
     createProduct,
