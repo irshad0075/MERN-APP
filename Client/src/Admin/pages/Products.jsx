@@ -52,17 +52,17 @@ export default function Product() {
             <thead>
               <tr>
                 <th scope="col">Name</th>
-                <th scope="col">Description</th>
                 <th scope="col">Model Year</th>
                 <th scope="col">Price</th>
-                <th scope="col">Discount %</th>
                 <th scope="col">Rating</th>
+                <th scope="col">Discount %</th>
                 <th scope="col">Stock</th>
                 <th scope="col">Category</th>
-                <th scope="col">Brand</th>
-                <th scope="col">colors</th>
+                <th scope="col">Brands</th>
+                <th scope="col">Colors</th>
+                <th scope="col">Image</th>
                 <th scope="col">Thumbnail</th>
-                <th scope="col">Images</th>
+                <th scope="col">Description</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -126,10 +126,10 @@ export default function Product() {
                         >
                           <MdDelete />
                         </button>
-                        <span>
+                        {/* <span>
                           {" "}
                           <ProductUpdate ID={val._id} recallData={setProduct} />
-                        </span>
+                        </span> */}
                       </div>
                     </td>
                   </tr>

@@ -137,6 +137,7 @@ const getProductByCategory = async (req, res) => {
 
 const updateProduct = async (req, res) => {
     const { _id, ...updateData } = req.body;
+    const filter = { _id };
 
     try {
         if (!mongoose.Types.ObjectId.isValid(_id)) {
@@ -146,9 +147,16 @@ const updateProduct = async (req, res) => {
         }
 
         await connect(process.env.MONGO_URI);
-        const updatedProduct = await Product.findByIdAndUpdate(_id, updateData, {
+
+        const updatedProduct = await Product.findOneAndUpdate(filter, updateData, {
             new: true
         });
+
+        if (!updatedProduct) {
+            return res.status(404).json({
+                message: 'Product not found',
+            });
+        }
 
         const products = await Product.find();
 
@@ -162,6 +170,7 @@ const updateProduct = async (req, res) => {
         });
     }
 };
+
 
 const deleteProduct = async (req, res) => {
 

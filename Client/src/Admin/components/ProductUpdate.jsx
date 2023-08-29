@@ -1,109 +1,103 @@
-import React from "react";
-import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import { FaPencilAlt } from "react-icons/fa";
-import { storage } from "../utils/FirebaseConfig";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import axios from "axios";
-import Form from "react-bootstrap/Form";
+import React, { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import { storage } from '../utils/FirebaseConfig';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import Form from 'react-bootstrap/Form';
+import axios from 'axios';
+import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
+import { FaPencilAlt } from 'react-icons/fa'
+import Swal from 'sweetalert2';
 
 export default function ProductUpdate({ recallData, ID }) {
   const [show, setShow] = useState(false);
-
-  //To get values from API
+  const [isLoading, setIsLoading] = useState(false);
   const [brandVal, setBrandVal] = useState([]);
   const [CategoryVal, setCategoryVal] = useState([]);
-
-  //To get values from form
-  const [ProductName, setProductName] = useState("");
+  const [ProductName, setProductName] = useState('');
   const [thumbnail, setThumbnail] = useState(null);
   const [price, setPrice] = useState(0);
   const [discountPercentage, setDiscountPercentage] = useState(0);
   const [rating, setRating] = useState(0);
   const [stock, setStock] = useState(0);
-  const [modelYear, setModelYear] = useState("");
-  const [category, setcategory] = useState("");
-  const [brand, setBrand] = useState("");
+  const [modelYear, setModelYear] = useState('');
+  const [category, setCategory] = useState('');
+  const [brand, setBrand] = useState('');
   const [imageArray, setImageArray] = useState([]);
   const [colors, setColors] = useState([]);
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
 
-  //To show values on brand and category drop down list
   const handleClose = () => setShow(false);
-  const handleShow = () => {
-    axios.get("http://localhost:3000/api/get-all-brand").then((json) => {
-      setBrandVal(json.data.brands);
-      axios.get("http://localhost:3000/api/get-all-categories").then((json) => {
-        setCategoryVal(json.data.category);
-        setShow(true);
-      });
-    });
+  const handleShow = async () => {
+    setIsLoading(true);
+
+    try {
+      const brandResponse = await axios.get('http://localhost:3000/api/get-all-brand');
+      setBrandVal(brandResponse.data.brands);
+
+      const categoryResponse = await axios.get('http://localhost:3000/api/get-all-categories');
+      setCategoryVal(categoryResponse.data.category);
+
+      setIsLoading(false);
+      setShow(true);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
   };
 
-  const urls = [];
-  const MultipleImageUpload = () =>
-    imageArray?.map((val) => {
-      const MultipleImageRef = ref(
-        storage,
-        `images/product/${ProductName}/${val.name}`
-      );
-      return uploadBytes(MultipleImageRef, val).then((snapshot) => {
-        return getDownloadURL(snapshot.ref)
-          .then((url) => {
-            urls.push(url);
-          })
-          .catch((error) => alert(error.message));
-      });
+  const MultipleImageUpload = async () => {
+    const promises = imageArray.map(async (val) => {
+      const MultipleImageRef = ref(storage, `images/product/${ProductName}/${val.name}`);
+      const snapshot = await uploadBytes(MultipleImageRef, val);
+      return getDownloadURL(snapshot.ref);
     });
+    return Promise.all(promises);
+  };
 
-  const updateProduct = (e) => {
+  const updateProduct = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
-    const uploadImages = MultipleImageUpload();
+    try {
+      const urls = await MultipleImageUpload();
 
-    Promise.all(uploadImages)
-      .then(() => {
-        const storageRef = ref(
-          storage,
-          `images/product/${ProductName}/${thumbnail.name}`
-        );
-        uploadBytes(storageRef, thumbnail).then((snapshot) => {
-          getDownloadURL(snapshot.ref)
-            .then((url) => {
-              const payload = {
-                _id: ID,
-                ProductName,
-                modelYear,
-                discountPercentage,
-                rating,
-                stock,
-                colors,
-                brand,
-                category,
-                price,
-                description,
-                thumbnail: url,
-                imageArray: urls,
-              };
-              console.log("Ready to hit the API", payload);
+      const storageRef = ref(storage, `images/product/${ProductName}/${thumbnail.name}`);
+      const snapshot = await uploadBytes(storageRef, thumbnail);
+      const thumbnailUrl = await getDownloadURL(snapshot.ref);
 
-              axios
-                .put("http://localhost:3000/api/update-product", payload)
-                .then((json) => {
-                  setShow(false);
-                  recallData(json.data.products);
-                })
-                .catch((error) => alert(error.message));
-            })
-            .catch((error) => {
-              console.log(error.message);
-            });
-        });
-      })
-      .catch((err) => console.log(err.message));
+      const payload = {
+        ProductName,
+        modelYear,
+        discountPercentage,
+        rating,
+        stock,
+        colors,
+        brand,
+        category,
+        price,
+        description,
+        thumbnail: thumbnailUrl,
+        imageArray: urls,
+      };
+
+      const json = await axios.put('http://localhost:3000/api/update-product', payload);
+      setIsLoading(false);
+      setShow(false);
+      recallData(json.data.products);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Product updated Successfully',
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } catch (error) {
+      setIsLoading(false);
+      console.error(error);
+      alert(error.message);
+    }
   };
-
   return (
     <>
       <Button variant="dark" className="mx-1" onClick={handleShow}>
@@ -147,7 +141,7 @@ export default function ProductUpdate({ recallData, ID }) {
               </label>
               <Form.Select
                 aria-label="Select Category"
-                onChange={(e) => setcategory(e.target.value)}
+                onChange={(e) => setCategory(e.target.value)}
               >
                 <option disabled>Select Category</option>
                 {CategoryVal.map((val, key) => (
@@ -303,10 +297,23 @@ export default function ProductUpdate({ recallData, ID }) {
               />
             </div>
 
-            <div className="d-flex">
+            <div className="d-flex align-items-center justify-content-between mt-3">
               <button type="submit" className="btn btn-primary">
                 Submit
               </button>
+              {isLoading && (
+                <div className="d-flex align-items-center">
+                  <Spinner
+                    animation="border"
+                    role="status"
+                    size="sm"
+                    className="me-2"
+                  >
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                  <span>Loading...</span>
+                </div>
+              )}
             </div>
           </form>
         </Modal.Body>
