@@ -1,0 +1,72 @@
+/* Slider Images */
+.slider__item {
+  max-width: 100%;
+  height: 650px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slider__item-01 {
+  background-image: url("https://www.edmunds.com/assets/m/cs/blt45abb6e1086baaef/64de9bb85acb3b3fd6301b2f/1734412-02-D-05_2000_1280.jpg");
+}
+
+.slider__item-02 {
+  background-image: url("https://www.edmunds.com/assets/m/cs/bltd94cedfe8797e1a0/64e6883366f1ff7aa82f5373/2024_Mercedes_EQB_2_1280.jpg");
+}
+
+.slider__item-03 {
+  background-image: url("https://www.edmunds.com/assets/m/cs/blt1bcf0ea8157869a0/64e686e03026ee2d4f6b8297/2024_ford_f-150-lightning_black_front_1_1280.jpg");
+}
+
+.slider__item-04 {
+  background-image: url("https://images.cars.com/cldstatic/wp-content/uploads/ford-expedition-2023-exterior-suv-towing-oem-01.jpg");
+}
+
+/* Arrow Styles */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.prev-arrow {
+  left: 20px;
+}
+
+.next-arrow {
+  right: 20px;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 992px) {
+  .slider__item {
+    height: 530px;
+    max-width: 100vw;
+  }
+
+  .slider__content {
+    margin-top: -50px;
+  }
+
+  .slider__content h1 {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .slider__item {
+    height: 450px;
+  }
+
+  .slider__content h1 {
+    font-size: 1.5rem;
+  }
+}
+  

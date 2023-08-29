@@ -1,0 +1,22 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "remixicon/fonts/remixicon.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { BrowserRouter } from 'react-router-dom';
+import ContextProvider from './Context/context.jsx';
+import CartContextProvider from './User/CartContext/context.jsx'; // Use CartProvider
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <ContextProvider>
+      <CartContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </CartContextProvider>
+    </ContextProvider>
+  </React.StrictMode>,
+)
