@@ -30,7 +30,11 @@ export default function CategoryPage() {
   useEffect(() => {
     axios
       .get(
+<<<<<<< HEAD
         `/api/get-all-categories?CategoryName=${CategoryName}`
+=======
+        `http://localhost:3000/api/get-all-categories?CategoryName=${CategoryName}`
+>>>>>>> origin/master
       )
       .then((json) => {
         setCategoryData(json.data.category); // Rename the state variable

@@ -18,7 +18,11 @@
     "mailgen": "^2.0.27",
     "mongoose": "^7.4.1",
     "nodemailer": "^6.9.4",
+<<<<<<< HEAD
     "nodemon": "^3.0.1",
     "path": "^0.12.7"
+=======
+    "nodemon": "^3.0.1"
+>>>>>>> origin/master
   }
 }

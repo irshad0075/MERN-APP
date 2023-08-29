@@ -6,6 +6,10 @@ const UserRouter = require("./api/user/Router");
 const BrandRouter = require("./api/Brands/Router");
 const ProductRouter = require("./api/Products/Router");
 const OrderRouter = require("./api/Orders/Router");
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 const cors = require("cors");
 const port = process.env.SERVER_PORT || 3000;
 

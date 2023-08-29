@@ -18,7 +18,11 @@ export default function Login() {
     const payload = { email, password };
 
     axios
+<<<<<<< HEAD
       .post(`/api/login`, payload)
+=======
+      .post('http://localhost:3000/api/login', payload)
+>>>>>>> origin/master
       .then((json) => {
         Cookies.set('token', json.data.token);
         dispatch({

@@ -3,14 +3,22 @@ import CategoryUpdate from '../components/CategoryUpdate.jsx'
 import CategoryModal from '../components/CategoryModal'
 import axios from 'axios'
 import { MdDelete } from 'react-icons/md'
+<<<<<<< HEAD
 import { AppRoute } from '../../App.jsx'
+=======
+
+>>>>>>> origin/master
 
 export default function Category() {
 
   const [category, setcategory] = useState([])
 
   useEffect(() => {
+<<<<<<< HEAD
     axios.get(`/api/get-all-categories`)
+=======
+    axios.get('http://localhost:3000/api/get-all-categories')
+>>>>>>> origin/master
       .then((json) => setcategory(json.data.category))
       .catch((err) => console.log(err))
   }, [])
@@ -22,7 +30,11 @@ const deleteCategory = (_id) => {
 
   const config = {
     method: 'delete',
+<<<<<<< HEAD
     url: `/api/delete-category`,
+=======
+    url: 'http://localhost:3000/api/delete-category',
+>>>>>>> origin/master
     data: payload
   }
 

@@ -27,7 +27,11 @@ function BrandModal({ recallData }) {
         .then((url) => {
           const payload = { BrandName, BrandImage: url };
           axios
+<<<<<<< HEAD
             .post(`/api/create-brand`, payload)
+=======
+            .post("http://localhost:3000/api/create-brand", payload)
+>>>>>>> origin/master
             .then((json) => {
               setIsLoading(false);
               setShow(false);

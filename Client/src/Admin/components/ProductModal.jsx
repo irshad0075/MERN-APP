@@ -7,7 +7,11 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import Swal from 'sweetalert2';
+<<<<<<< HEAD
 import {AppRoute} from '../../App.jsx'
+=======
+
+>>>>>>> origin/master
 function ProductModal({ recallData }) {
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,10 +35,17 @@ function ProductModal({ recallData }) {
     setIsLoading(true);
 
     try {
+<<<<<<< HEAD
       const brandResponse = await axios.get(`/api/get-all-brand`);
       setBrandVal(brandResponse.data.brands);
 
       const categoryResponse = await axios.get(`/api/get-all-categories`);
+=======
+      const brandResponse = await axios.get('http://localhost:3000/api/get-all-brand');
+      setBrandVal(brandResponse.data.brands);
+
+      const categoryResponse = await axios.get('http://localhost:3000/api/get-all-categories');
+>>>>>>> origin/master
       setCategoryVal(categoryResponse.data.category);
 
       setIsLoading(false);
@@ -80,7 +91,11 @@ function ProductModal({ recallData }) {
         imageArray: urls,
       };
 
+<<<<<<< HEAD
       const response = await axios.post(`/api/create-product`, payload);
+=======
+      const response = await axios.post('http://localhost:3000/api/create-product', payload);
+>>>>>>> origin/master
       setIsLoading(false);
       setShow(false);
       recallData(response.data.products);

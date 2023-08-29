@@ -5,8 +5,13 @@ import Guest from './Guest'
 import { GlobalContext } from './Context/context'
 import { decodeToken } from 'react-jwt'
 
+<<<<<<< HEAD
 export const AppRoute = `/`
  
+=======
+
+export const AppRoute = '/'
+>>>>>>> origin/master
 const ComponentByRoles = {
   'admin': Admin,
   'user': User,

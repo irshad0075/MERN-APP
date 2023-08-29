@@ -3,12 +3,20 @@ import axios from "axios";
 import BrandModal from "../components/BrandModal.jsx";
 import { MdDelete } from "react-icons/md";
 import BrandUpdate from "../components/BrandUpdate.jsx";
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 export default function Brand() {
   const [brand, setBrand] = useState([]);
 
   useEffect(() => {
     axios
+<<<<<<< HEAD
       .get(`/api/get-all-brand`)
+=======
+      .get("http://localhost:3000/api/get-all-brand")
+>>>>>>> origin/master
       .then((json) => setBrand(json.data.brands))
       .catch((err) => console.log(err));
   }, []);
@@ -18,7 +26,11 @@ export default function Brand() {
 
     const config = {
       method: "delete",
+<<<<<<< HEAD
       url: `/api/delete-brand`,
+=======
+      url: "http://localhost:3000/api/delete-brand",
+>>>>>>> origin/master
       data: payload,
     };
 

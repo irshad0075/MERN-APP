@@ -9,7 +9,11 @@ export default function Product() {
 
   useEffect(() => {
     axios
+<<<<<<< HEAD
       .get(`/api/get-all-products`)
+=======
+      .get(`http://localhost:3000/api/get-all-products`)
+>>>>>>> origin/master
       .then((response) => {
         const products = response.data.products || [];
         setProduct(products);
@@ -27,7 +31,11 @@ export default function Product() {
 
     const config = {
       method: "delete",
+<<<<<<< HEAD
       url: `/api/delete-product`,
+=======
+      url: "http://localhost:3000/api/delete-product",
+>>>>>>> origin/master
       data: payload,
     };
 

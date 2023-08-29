@@ -34,7 +34,11 @@ export default function BrandsAdmin() {
 
   useEffect(() => {
     axios
+<<<<<<< HEAD
       .get(`/api/get-all-brand`)
+=======
+      .get("http://localhost:3000/api/get-all-brand")
+>>>>>>> origin/master
       .then(response => {
         setBrands(response.data.brands || []);
       })

@@ -37,7 +37,11 @@ export default function CategoryPage() {
     axios
 
       .get(
+<<<<<<< HEAD
         `/api/get-all-categories?CategoryName=/${CategoryName}`
+=======
+        `http://localhost:3000/api/get-all-categories?CategoryName=/${CategoryName}`
+>>>>>>> origin/master
       )
       .then((json) => setCategory(json.data.category));
   }, [CategoryName]);

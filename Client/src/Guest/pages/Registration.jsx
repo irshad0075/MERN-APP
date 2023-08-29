@@ -19,7 +19,11 @@ export default function Signup() {
     const payload = { email, password, username };
 
     axios
+<<<<<<< HEAD
       .post(`/api/signup`, payload)
+=======
+      .post('http://localhost:3000/api/signup', payload)
+>>>>>>> origin/master
       .then((json) => {
         Cookies.set('token', json.data.token);
         dispatch({

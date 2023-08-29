@@ -26,7 +26,11 @@ function CategoryModal({ recallData }) {
           const payload = { CategoryName, CategoryImage: url };
 
           axios
+<<<<<<< HEAD
             .post(`/api/create-category`, payload)
+=======
+            .post('http://localhost:3000/api/create-category', payload)
+>>>>>>> origin/master
             .then((json) => {
               setIsLoading(false); // Stop loading
               setShow(false);

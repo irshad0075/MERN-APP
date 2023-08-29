@@ -13,7 +13,11 @@ function Products() {
   useEffect(() => {
     // Fetch products from the API
     axios
+<<<<<<< HEAD
       .get(`/api/get-all-products`)
+=======
+      .get("http://localhost:3000/api/get-all-products")
+>>>>>>> origin/master
       .then((response) => {
         setProducts(response.data.products);
         setIsLoading(false);

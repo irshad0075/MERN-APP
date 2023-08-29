@@ -67,7 +67,11 @@ function ProductPage() {
     // Fetch product details by name
     axios
       .get(
+<<<<<<< HEAD
         `/api/get-product-by-name?ProductName=${ProductName}`
+=======
+        `http://localhost:3000/api/get-product-by-name?ProductName=${ProductName}`
+>>>>>>> origin/master
       )
       .then((response) => setProduct(response.data.products[0]))
       .catch((error) => console.log(error));

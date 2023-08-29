@@ -35,7 +35,11 @@ export default function OrderPlacement() {
 
     try {
       const response = await axios.post(
+<<<<<<< HEAD
         `/api/create-order`,
+=======
+        "http://localhost:3000/api/create-order",
+>>>>>>> origin/master
         payload
       );
 
@@ -72,7 +76,11 @@ export default function OrderPlacement() {
 
     try {
       const response = await axios.get(
+<<<<<<< HEAD
         `/api/Order-by-id?${trackingId}`
+=======
+        `http://localhost:3000/api/Order-by-id?${trackingId}`
+>>>>>>> origin/master
       );
 
       if (response.data.order) {
@@ -152,7 +160,11 @@ export default function OrderPlacement() {
                   placeholder="Type your Email"
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
+<<<<<<< HEAD
                  
+=======
+                  placeholder="name@example.com"
+>>>>>>> origin/master
                 />
               </Form.Group>
               <Form.Group className="mb-3 w-50">
